@@ -1,22 +1,32 @@
 package com.example.Projeto.DTO;
 
 import com.example.Projeto.Entity.Cliente;
+import com.example.Projeto.Validation.Placa;
+import jakarta.validation.constraints.NotBlank;
 
-public class VeiculoResponse {
+public class VeiculoRequest {
 
+    @NotBlank(message = "A placa é obrigatória")
+    @Placa
     private String placa;
+
+    @NotBlank
     private String chassi;
+
+    @NotBlank
     private Integer km;
     private Cliente cliente;
+    private Integer clienteId;
 
-    public VeiculoResponse() {
+    public VeiculoRequest() {
     }
 
-    public VeiculoResponse(String placa, String chassi, Integer km, Cliente cliente) {
+    public VeiculoRequest(String placa, String chassi, Integer km, Cliente cliente, Integer clienteId) {
         this.placa = placa;
         this.chassi = chassi;
         this.km = km;
         this.cliente = cliente;
+        this.clienteId = clienteId;
     }
 
     public String getPlaca() {
@@ -49,5 +59,13 @@ public class VeiculoResponse {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Integer getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Integer clienteId) {
+        this.clienteId = clienteId;
     }
 }

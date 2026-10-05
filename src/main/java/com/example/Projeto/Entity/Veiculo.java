@@ -10,15 +10,8 @@ public class Veiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @NotBlank(message = "A placa é obrigatória")
-    @Placa
     private String placa;
-
-    @NotBlank
     private String chassi;
-
-    @NotBlank
     private Integer km;
 
     @ManyToOne
