@@ -25,4 +25,14 @@ public class VeiculoMapper {
 
         return veiculosRepsponse;
     }
+
+    public static VeiculoResponse toResponse(Veiculo veiculo) {
+        return new VeiculoResponse(
+                veiculo.getId(),
+                veiculo.getPlaca(),
+                veiculo.getChassi(),
+                veiculo.getKm(),
+                veiculo.getCliente()
+        );
+    }
 }

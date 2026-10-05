@@ -7,7 +7,9 @@ import com.example.Projeto.Service.VeiculoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -23,5 +25,11 @@ public class VeiculoController {
     public ResponseEntity<List<VeiculoResponse>> listar() {
         List<Veiculo> veiculos = veiculoService.listar();
         return ResponseEntity.status(200).body(VeiculoMapper.toListResponse(veiculos));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VeiculoResponse> buscarPorId(@PathVariable Integer id) {
+        Veiculo veiculo = veiculoService.buscarPorId(id);
+        return ResponseEntity.status(200).body(VeiculoMapper.toResponse(veiculo));
     }
 }
