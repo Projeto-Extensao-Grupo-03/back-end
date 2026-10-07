@@ -4,6 +4,7 @@ import com.example.Projeto.Entity.Cliente;
 
 public class VeiculoResponse {
 
+    private Integer id;
     private String placa;
     private String chassi;
     private Integer km;
@@ -12,11 +13,20 @@ public class VeiculoResponse {
     public VeiculoResponse() {
     }
 
-    public VeiculoResponse(String placa, String chassi, Integer km, Cliente cliente) {
+    public VeiculoResponse(Integer id, String placa, String chassi, Integer km, Cliente cliente) {
+        this.id = id;
         this.placa = placa;
         this.chassi = chassi;
         this.km = km;
         this.cliente = cliente;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPlaca() {

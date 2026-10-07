@@ -16,6 +16,7 @@ public class VeiculoMapper {
 
         for (Veiculo veiculo : veiculos) {
             VeiculoResponse veiculoResponse = new VeiculoResponse(
+                    veiculo.getId(),
                     veiculo.getPlaca(),
                     veiculo.getChassi(),
                     veiculo.getKm(),
@@ -32,6 +33,7 @@ public class VeiculoMapper {
         if (veiculo == null) {return null;}
 
         return new VeiculoResponse(
+                veiculo.getId(),
                 veiculo.getPlaca(),
                 veiculo.getChassi(),
                 veiculo.getKm(),
