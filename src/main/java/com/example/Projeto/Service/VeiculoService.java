@@ -43,11 +43,31 @@ public class VeiculoService {
             throw new ClienteNaoExiste("Cliente não encontrado!");
         }
 
-        if (veiculoRepository.existsByPlacaAndCliente(veiculo.getPlaca(), clientId)) {
+        if (veiculoRepository.existsByPlacaAndCliente(veiculo.getPlaca(), clienteOptional.get())) {
             throw new VeiculoDuplicado("Este veículo já existe para este cliente!");
         }
 
         veiculo.setCliente(clienteOptional.get());
+        return veiculoRepository.save(veiculo);
+    }
+
+    public Veiculo atualizar(Veiculo veiculo, Integer id, Integer clientId) {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(clientId);
+        if (clienteOptional.isEmpty()) {
+            throw new ClienteNaoExiste("Cliente não encontrado!");
+        }
+
+        if (!veiculoRepository.existsById(id)) {
+            throw new VeiculoNaoEncontrado("Veículo não encontrado!");
+        }
+
+        veiculo.setCliente(clienteOptional.get());
+
+        if (veiculoRepository.existsByPlacaAndClienteAndIdNot(veiculo.getPlaca(), veiculo.getCliente(), id)) {
+            throw new VeiculoDuplicado("Veículo duplicado!");
+        }
+
+        veiculo.setId(id);
         return veiculoRepository.save(veiculo);
     }
 }

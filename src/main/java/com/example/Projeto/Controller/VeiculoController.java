@@ -26,6 +26,9 @@ public class VeiculoController {
     @GetMapping
     public ResponseEntity<List<VeiculoResponse>> listar() {
         List<Veiculo> veiculos = veiculoService.listar();
+        if (veiculos.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
         return ResponseEntity.status(200).body(VeiculoMapper.toListResponse(veiculos));
     }
 
@@ -39,5 +42,11 @@ public class VeiculoController {
     public ResponseEntity<VeiculoResponse> cadastrar(@Valid @RequestBody VeiculoRequest veiculoRequest) {
         Veiculo veiculo = veiculoService.cadastrar(VeiculoMapper.toEntity(veiculoRequest), veiculoRequest.getClienteId());
         return ResponseEntity.status(201).body(VeiculoMapper.toResponse(veiculo));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<VeiculoResponse> atualizar(@Valid @RequestBody VeiculoRequest veiculoRequest, @PathVariable Integer id) {
+        Veiculo veiculo = veiculoService.atualizar(VeiculoMapper.toEntity(veiculoRequest), id, veiculoRequest.getClienteId());
+        return ResponseEntity.status(200).body(VeiculoMapper.toResponse(veiculo));
     }
 }

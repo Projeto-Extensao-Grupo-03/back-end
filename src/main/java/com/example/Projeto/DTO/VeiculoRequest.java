@@ -3,6 +3,7 @@ package com.example.Projeto.DTO;
 import com.example.Projeto.Entity.Cliente;
 import com.example.Projeto.Validation.Placa;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class VeiculoRequest {
 
@@ -13,19 +14,19 @@ public class VeiculoRequest {
     @NotBlank
     private String chassi;
 
-    @NotBlank
+    @NotNull
     private Integer km;
-    private Cliente cliente;
+
+    @NotNull
     private Integer clienteId;
 
     public VeiculoRequest() {
     }
 
-    public VeiculoRequest(String placa, String chassi, Integer km, Cliente cliente, Integer clienteId) {
+    public VeiculoRequest(String placa, String chassi, Integer km, Integer clienteId) {
         this.placa = placa;
         this.chassi = chassi;
         this.km = km;
-        this.cliente = cliente;
         this.clienteId = clienteId;
     }
 
@@ -51,14 +52,6 @@ public class VeiculoRequest {
 
     public void setKm(Integer km) {
         this.km = km;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Integer getClienteId() {
