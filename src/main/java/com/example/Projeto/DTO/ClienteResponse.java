@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import java.time.LocalDate;
 
 public class ClienteResponse {
-
     String nome;
     String cpf;
     LocalDate dataNascimento;
