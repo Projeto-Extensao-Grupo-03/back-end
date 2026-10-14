@@ -1,8 +1,8 @@
-package school.sptech.exemplojwt.repository;
+package com.example.Projeto.LoginJWT.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import school.sptech.exemplojwt.entity.Usuario;
+import com.example.Projeto.LoginJWT.entity.Usuario;
 
 import java.util.Optional;
 

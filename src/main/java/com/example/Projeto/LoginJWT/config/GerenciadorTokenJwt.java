@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.config;
+package com.example.Projeto.LoginJWT.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

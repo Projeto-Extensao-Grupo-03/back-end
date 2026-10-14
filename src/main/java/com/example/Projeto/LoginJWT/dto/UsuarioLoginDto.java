@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.dto;
+package com.example.Projeto.LoginJWT.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;

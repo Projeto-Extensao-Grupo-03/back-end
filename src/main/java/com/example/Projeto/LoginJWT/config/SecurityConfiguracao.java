@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.config;
+package com.example.Projeto.LoginJWT.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import school.sptech.exemplojwt.service.AutenticacaoService;
+import com.example.Projeto.LoginJWT.service.AutenticacaoService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,8 +51,9 @@ public class SecurityConfiguracao {
             "/webjars/**",
             "/v3/api-docs/**",
             "/actuator/*",
-            "/usuarios/login/**",
-            "/usuarios/logout/**",
+            "/auth",
+            "/auth/login/**",
+            "/auth/logout/**",
             "/h2-console/**",
             "/h2-console/*/**",
             "/error/**"

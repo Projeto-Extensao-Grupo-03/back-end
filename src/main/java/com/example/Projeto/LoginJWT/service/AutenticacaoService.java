@@ -1,13 +1,13 @@
-package school.sptech.exemplojwt.service;
+package com.example.Projeto.LoginJWT.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import school.sptech.exemplojwt.entity.Usuario;
-import school.sptech.exemplojwt.repository.UsuarioRepository;
-import school.sptech.exemplojwt.dto.UsuarioDetalhesDto;
+import com.example.Projeto.LoginJWT.entity.Usuario;
+import com.example.Projeto.LoginJWT.repository.UsuarioRepository;
+import com.example.Projeto.LoginJWT.dto.UsuarioDetalhesDto;
 
 import java.util.Optional;
 

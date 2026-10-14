@@ -1,26 +1,17 @@
-package school.sptech.exemplojwt.dto;
+package com.example.Projeto.LoginJWT.dto;
 
 public class UsuarioTokenDto {
 
-  private Long userId;
-  private String nome;
+  private Integer userId;
   private String email;
   private String token;
 
-  public Long getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(Long userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
-  }
-
-  public String getNome() {
-    return nome;
-  }
-
-  public void setNome(String nome) {
-    this.nome = nome;
   }
 
   public String getEmail() {

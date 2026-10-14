@@ -1,37 +1,27 @@
-package school.sptech.exemplojwt.entity;
+package com.example.Projeto.LoginJWT.entity;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "acesso")
 public class Usuario {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Integer id;
 
-  private String nome;
+  // Mapeia para a coluna "usuario" do banco, mas mantém o nome "email" no Java para facilitar com o JWT
+  @Column(name = "usuario")
   private String email;
-  private String senha;
-  private String perfil;
 
-  public Long getId() {
+  private String senha;
+
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
-  }
-
-  public String getNome() {
-    return nome;
-  }
-
-  public void setNome(String nome) {
-    this.nome = nome;
   }
 
   public String getEmail() {
@@ -48,13 +38,5 @@ public class Usuario {
 
   public void setSenha(String senha) {
     this.senha = senha;
-  }
-
-  public String getPerfil() {
-    return perfil;
-  }
-
-  public void setPerfil(String perfil) {
-    this.perfil = perfil;
   }
 }

@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.config;
+package com.example.Projeto.LoginJWT.config;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

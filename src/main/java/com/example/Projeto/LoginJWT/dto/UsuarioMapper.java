@@ -1,6 +1,6 @@
-package school.sptech.exemplojwt.dto;
+package com.example.Projeto.LoginJWT.dto;
 
-import school.sptech.exemplojwt.entity.Usuario;
+import com.example.Projeto.LoginJWT.entity.Usuario;
 
 public class UsuarioMapper {
 
@@ -8,9 +8,7 @@ public class UsuarioMapper {
     Usuario usuario = new Usuario();
 
     usuario.setEmail(usuarioCriacaoDto.getEmail());
-    usuario.setNome(usuarioCriacaoDto.getNome());
     usuario.setSenha(usuarioCriacaoDto.getSenha());
-    usuario.setPerfil(usuarioCriacaoDto.getPerfil());
 
     return usuario;
   }
@@ -29,25 +27,16 @@ public class UsuarioMapper {
 
     usuarioTokenDto.setUserId(usuario.getId());
     usuarioTokenDto.setEmail(usuario.getEmail());
-    usuarioTokenDto.setNome(usuario.getNome());
     usuarioTokenDto.setToken(token);
 
     return usuarioTokenDto;
   }
 
-  /**
-   * Mapeia para o DTO de resposta do login — sem o token.
-   *
-   * <p>O token não pertence ao body: ele é enviado como cookie HttpOnly
-   * via {@code Set-Cookie}. Este DTO carrega apenas os dados necessários
-   * para o frontend identificar o usuário na sessão.</p>
-   */
   public static UsuarioSessaoDto ofSessao(UsuarioTokenDto tokenDto) {
     UsuarioSessaoDto dto = new UsuarioSessaoDto();
 
     dto.setUserId(tokenDto.getUserId());
     dto.setEmail(tokenDto.getEmail());
-    dto.setNome(tokenDto.getNome());
 
     return dto;
   }
@@ -57,7 +46,6 @@ public class UsuarioMapper {
 
     usuarioListarDto.setId(usuario.getId());
     usuarioListarDto.setEmail(usuario.getEmail());
-    usuarioListarDto.setNome(usuario.getNome());
 
     return usuarioListarDto;
   }

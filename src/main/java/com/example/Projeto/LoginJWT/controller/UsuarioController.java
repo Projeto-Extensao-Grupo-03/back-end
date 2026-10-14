@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.controller;
+package com.example.Projeto.LoginJWT.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,15 +9,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import school.sptech.exemplojwt.dto.*;
-import school.sptech.exemplojwt.entity.Usuario;
-import school.sptech.exemplojwt.service.UsuarioService;
+import com.example.Projeto.LoginJWT.dto.*;
+import com.example.Projeto.LoginJWT.entity.Usuario;
+import com.example.Projeto.LoginJWT.service.UsuarioService;
 
 import java.time.Duration;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/auth")
 public class UsuarioController {
 
     public static final String COOKIE_NOME = "authToken";
@@ -29,7 +29,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    @SecurityRequirement(name = "Bearer")
+    // @SecurityRequirement(name = "Bearer")
     public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioCriacaoDto usuarioCriacaoDto) {
         final Usuario novoUsuario = UsuarioMapper.of(usuarioCriacaoDto);
         this.usuarioService.criar(novoUsuario);

@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.config;
+package com.example.Projeto.LoginJWT.config;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -16,8 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
-import school.sptech.exemplojwt.controller.UsuarioController;
-import school.sptech.exemplojwt.service.AutenticacaoService;
+import com.example.Projeto.LoginJWT.controller.UsuarioController;
+import com.example.Projeto.LoginJWT.service.AutenticacaoService;
 
 import java.io.IOException;
 

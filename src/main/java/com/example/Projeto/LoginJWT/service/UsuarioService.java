@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.service;
+package com.example.Projeto.LoginJWT.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +9,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import school.sptech.exemplojwt.config.GerenciadorTokenJwt;
-import school.sptech.exemplojwt.dto.UsuarioListarDto;
-import school.sptech.exemplojwt.entity.Usuario;
-import school.sptech.exemplojwt.repository.UsuarioRepository;
-import school.sptech.exemplojwt.dto.UsuarioLoginDto;
-import school.sptech.exemplojwt.dto.UsuarioTokenDto;
-import school.sptech.exemplojwt.dto.UsuarioCriacaoDto;
-import school.sptech.exemplojwt.dto.UsuarioMapper;
+import com.example.Projeto.LoginJWT.config.GerenciadorTokenJwt;
+import com.example.Projeto.LoginJWT.dto.UsuarioListarDto;
+import com.example.Projeto.LoginJWT.entity.Usuario;
+import com.example.Projeto.LoginJWT.repository.UsuarioRepository;
+import com.example.Projeto.LoginJWT.dto.UsuarioLoginDto;
+import com.example.Projeto.LoginJWT.dto.UsuarioTokenDto;
+import com.example.Projeto.LoginJWT.dto.UsuarioCriacaoDto;
+import com.example.Projeto.LoginJWT.dto.UsuarioMapper;
 
 @Service
 public class UsuarioService {

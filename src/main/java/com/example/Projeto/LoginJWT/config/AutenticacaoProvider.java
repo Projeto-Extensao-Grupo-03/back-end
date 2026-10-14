@@ -1,4 +1,4 @@
-package school.sptech.exemplojwt.config;
+package com.example.Projeto.LoginJWT.config;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import school.sptech.exemplojwt.service.AutenticacaoService;
+import com.example.Projeto.LoginJWT.service.AutenticacaoService;
 
 /**
  * Provider de autenticação customizado responsável por validar as credenciais do usuário.
