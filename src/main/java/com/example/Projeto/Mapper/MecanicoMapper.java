@@ -19,7 +19,7 @@ public class MecanicoMapper {
         return response;
     }
 
-    public  static Mecanico toEntity(MecanicoRequest request){
+    public static Mecanico toEntity(MecanicoRequest request){
         Mecanico mecanico = new Mecanico(
                 null,
                 request.getNome(),
