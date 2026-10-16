@@ -33,9 +33,9 @@ public class MecanicoController {
         return ResponseEntity.status(200).body(toResponse(mecanico));
     }
 
-    @GetMapping("/{codigo}")
-    public ResponseEntity<MecanicoResponse> procurar(@PathVariable String codigoFuncionario) {
-        return ResponseEntity.status(200).body(toResponse(mecanicoService.buscarPorCodigo(codigoFuncionario)));
+    @GetMapping("buscar/{codigo}")
+    public ResponseEntity<MecanicoResponse> procurar(@PathVariable String codigo) {
+        return ResponseEntity.status(200).body(toResponse(mecanicoService.buscarPorCodigo(codigo)));
     }
 
     @PostMapping

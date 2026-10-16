@@ -15,7 +15,8 @@ public class MecanicoRequest {
     private String nome;
 
     @NotNull
-    @Size(min=1, max=1)
+    @Min(0)
+    @Max(1)
     private Integer ativo;
 
     @NotBlank
