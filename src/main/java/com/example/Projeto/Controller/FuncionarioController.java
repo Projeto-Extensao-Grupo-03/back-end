@@ -26,24 +26,24 @@ public class FuncionarioController {
         return ResponseEntity.status(200).body(toListResponse(funcionarioService.listarAll()));
     }
 
-    @GetMapping("/{codigo}")
-    public ResponseEntity<FuncionarioResponse> buscarByCodigo(@PathVariable String codigo) {
-
-    }
-
-    @PostMapping
-    public ResponseEntity<FuncionarioResponse> cadastrar(@PathVariable String codigo) {
-
-    }
-
-    @PutMapping
-    public ResponseEntity<FuncionarioResponse> atualizar(@RequestBody Funcionario funcionario) {
-
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-
-    }
+//    @GetMapping("/{codigo}")
+//    public ResponseEntity<FuncionarioResponse> buscarByCodigo(@PathVariable String codigo) {
+//
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity<FuncionarioResponse> cadastrar(@PathVariable String codigo) {
+//
+//    }
+//
+//    @PutMapping
+//    public ResponseEntity<FuncionarioResponse> atualizar(@RequestBody Funcionario funcionario) {
+//
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+//
+//    }
 
 }
