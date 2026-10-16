@@ -1,9 +1,9 @@
 package com.example.Projeto.Utils;
 import java.util.Random;
 
-public class CodigoFuncionario {
+public class CodigoFuncionarioUtil {
 
-    public static String gerarCodigoComIniciais(String nomeCompleto) {
+    public static String gerarCodigoFuncionario(String nomeCompleto) {
         if (nomeCompleto == null || nomeCompleto.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome não pode ser nulo ou vazio.");
         }
@@ -34,9 +34,9 @@ public class CodigoFuncionario {
     }
 
     public static void main(String[] args) {
-        System.out.println(gerarCodigoComIniciais("Heloisy Oliveira Mota"));
-        System.out.println(gerarCodigoComIniciais("João Carlos Da Silva Valle"));
-        System.out.println(gerarCodigoComIniciais("Maria da Silva"));
+        System.out.println(gerarCodigoFuncionario("Heloisy Oliveira Mota"));
+        System.out.println(gerarCodigoFuncionario("João Carlos Da Silva Valle"));
+        System.out.println(gerarCodigoFuncionario("Maria da Silva"));
     }
     }
 

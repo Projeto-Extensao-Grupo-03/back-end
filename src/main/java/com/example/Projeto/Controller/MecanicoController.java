@@ -2,12 +2,16 @@ package com.example.Projeto.Controller;
 
 import com.example.Projeto.DTO.MecanicoRequest;
 import com.example.Projeto.DTO.MecanicoResponse;
+import com.example.Projeto.Entity.Mecanico;
 import com.example.Projeto.Service.MecanicoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.login.CredentialException;
 import java.util.List;
+
+import static com.example.Projeto.Mapper.MecanicoMapper.*;
 
 @RestController
 @RequestMapping("/mecanico")
@@ -20,29 +24,30 @@ public class MecanicoController {
     }
     @GetMapping
     public ResponseEntity<List<MecanicoResponse>> listar(){
-        List<MecanicoResponse> mecanicos = mecanicoService.listar();
-        if (mecanicos.size() < 1) {
-            return ResponseEntity.status(204).build();
-        }
-        return ResponseEntity.status(200).body(mecanicos);
+        return ResponseEntity.status(200).body( listEntityToResponse(mecanicoService.listar()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MecanicoResponse> procurar(@PathVariable Integer id) {
-        MecanicoResponse mecanico = mecanicoService.buscar(id);
-        return ResponseEntity.status(200).body(mecanico);
+        Mecanico mecanico = mecanicoService.buscarPorId(id);
+        return ResponseEntity.status(200).body(toResponse(mecanico));
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<MecanicoResponse> procurar(@PathVariable String codigoFuncionario) {
+        return ResponseEntity.status(200).body(toResponse(mecanicoService.buscarPorCodigo(codigoFuncionario)));
     }
 
     @PostMapping
     public ResponseEntity<MecanicoResponse> cadastrar(@Valid MecanicoRequest request){
-        MecanicoResponse mecanico = mecanicoService.cadastrar(request);
-        return ResponseEntity.status(201).body(mecanico);
+        return ResponseEntity.status(201).body(toResponse(mecanicoService.cadastrar(toEntity(request))));
     }
 
     @PutMapping("/{id}")
-    public MecanicoResponse att(@PathVariable Integer id, @Valid @RequestBody MecanicoRequest request){
-        MecanicoResponse mecanico = mecanicoService.att(id, request);
-        return mecanico;
+    public ResponseEntity<MecanicoResponse> att(@PathVariable Integer id, @Valid @RequestBody MecanicoRequest request){
+        Mecanico mecanicoParaSalvar = toEntity(request);
+
+        return ResponseEntity.status(200).body(toResponse(mecanicoService.atualizar(id,mecanicoParaSalvar)));
     }
 
     @DeleteMapping("/{id}")

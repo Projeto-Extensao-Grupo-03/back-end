@@ -2,9 +2,7 @@ package com.example.Projeto.Entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -12,18 +10,29 @@ import java.time.LocalDate;
 @Entity
 @Table(name="mecanico")
 public class Mecanico {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
+    @Size(min=1,max=5)
+    private String codigo;
+
+    @NotNull
     @NotBlank
-    String nome;
+    @Size(min=1, max=100)
+    private String nome;
+
+    @NotNull
+    @Size(min=1, max=1)
+    private Integer ativo;
 
     @NotBlank
     @CPF
     String cpf;
 
     @NotNull
+    @Past
     LocalDate dataNascimento;
 
     @Email
@@ -33,22 +42,22 @@ public class Mecanico {
     @NotNull
     Long numeroTelefone;
 
-    @NotBlank
-    String codigo;
 
 
     public Mecanico() {
     }
 
-    public Mecanico(Integer id, String nome, String cpf, LocalDate dataNascimento, String email, Long numeroTelefone, String codigo) {
+    public Mecanico(Integer id, String codigo, String nome, Integer ativo, String cpf, LocalDate dataNascimento, String email, Long numeroTelefone) {
         this.id = id;
+        this.codigo = codigo;
         this.nome = nome;
+        this.ativo = ativo;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.numeroTelefone = numeroTelefone;
-        this.codigo = codigo;
     }
+
 
     public Integer getId() {
         return id;
@@ -58,12 +67,28 @@ public class Mecanico {
         this.id = id;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Integer ativo) {
+        this.ativo = ativo;
     }
 
     public String getCpf() {
@@ -96,13 +121,5 @@ public class Mecanico {
 
     public void setNumeroTelefone(Long numeroTelefone) {
         this.numeroTelefone = numeroTelefone;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 }
