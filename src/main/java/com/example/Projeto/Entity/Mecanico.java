@@ -24,6 +24,8 @@ public class Mecanico {
     private String nome;
 
     @NotNull
+    @Min(0)
+    @Max(1)
     private Integer ativo;
 
     @NotBlank
