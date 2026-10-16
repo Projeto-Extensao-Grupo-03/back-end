@@ -24,7 +24,6 @@ public class Mecanico {
     private String nome;
 
     @NotNull
-    @Size(min=1, max=1)
     private Integer ativo;
 
     @NotBlank
