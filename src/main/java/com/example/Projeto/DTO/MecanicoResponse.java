@@ -3,9 +3,7 @@ package com.example.Projeto.DTO;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
@@ -13,24 +11,26 @@ import java.time.LocalDate;
 public class MecanicoResponse {
 
     Integer id;
-    String nome;
+    private String codigo;
+    private String nome;
+    private Integer ativo;
     String cpf;
     LocalDate dataNascimento;
     String email;
     Long numeroTelefone;
-    String codigo;
 
     public MecanicoResponse() {
     }
 
-    public MecanicoResponse(Integer id, String nome, String cpf, LocalDate dataNascimento, String email, Long numeroTelefone, String codigo) {
+    public MecanicoResponse(Integer id, String codigo, String nome, Integer ativo, String cpf, LocalDate dataNascimento, String email, Long numeroTelefone) {
         this.id = id;
+        this.codigo = codigo;
         this.nome = nome;
+        this.ativo = ativo;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.numeroTelefone = numeroTelefone;
-        this.codigo = codigo;
     }
 
     public Integer getId() {
@@ -41,12 +41,28 @@ public class MecanicoResponse {
         this.id = id;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Integer ativo) {
+        this.ativo = ativo;
     }
 
     public String getCpf() {
@@ -79,13 +95,5 @@ public class MecanicoResponse {
 
     public void setNumeroTelefone(Long numeroTelefone) {
         this.numeroTelefone = numeroTelefone;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 }

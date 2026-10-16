@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;

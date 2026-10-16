@@ -7,6 +7,7 @@ import com.example.Projeto.Entity.Cliente;
 import com.example.Projeto.Entity.Mecanico;
 
 import com.example.Projeto.Exceptions.ClienteNaoExiste;
+import com.example.Projeto.Exceptions.EmailJaUtilizado;
 import com.example.Projeto.Exceptions.MecanicoJaCadastrado;
 import com.example.Projeto.Exceptions.MecanicoNaoExiste;
 import com.example.Projeto.Mapper.ClienteMapper;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.Projeto.Utils.CodigoFuncionarioUtil.gerarCodigoFuncionario;
+
 @Service
 public class MecanicoService {
 
@@ -29,48 +32,67 @@ public class MecanicoService {
     }
 
 
-    public List<MecanicoResponse> listar() {
-        List<Mecanico> mecanicos = mecanicoRepository.findAll();
-        List<MecanicoResponse> mecanicosExibir = new ArrayList<>();
-        for (int i = 0; i < mecanicos.size(); i++) {
-            MecanicoResponse mecanicoDaVez = MecanicoMapper.toResponse(mecanicos.get(i));
-            mecanicosExibir.add(mecanicoDaVez);
-        }
-        return mecanicosExibir;
+    public List<Mecanico> listar() {
+        return mecanicoRepository.findAll();
     }
 
-    public MecanicoResponse buscar(Integer id) {
+    public Mecanico buscarPorId(Integer id) {
         Optional<Mecanico> mecanico = mecanicoRepository.findById(id);
         if (mecanico.isEmpty()) {
             throw new MecanicoNaoExiste("Mecanico não encontrado");
         }
-        Mecanico mecanicoExibir = mecanico.get();
-        MecanicoResponse mecanicoDaVez = MecanicoMapper.toResponse(mecanicoExibir);
 
-        return mecanicoDaVez;
+        return mecanico.get();
     }
 
-    public MecanicoResponse cadastrar(@Valid MecanicoRequest request) {
-        if (mecanicoRepository.existsByEmailOrCpf(request.getEmail(), request.getCpf())) {
-            throw new MecanicoJaCadastrado("Um mecânico já foi cadastrado com essas informações!");
+    public Mecanico buscarPorCodigo(String codigo) {
+        Optional<Mecanico> mecanico = mecanicoRepository.findByCodigo(codigo);
+        if (mecanico.isEmpty()) {
+            throw new MecanicoNaoExiste("Mecanico não encontrado");
         }
 
-        Mecanico mecanico = MecanicoMapper.toEntity(request);
-        mecanicoRepository.save(mecanico);
-        MecanicoResponse response = MecanicoMapper.toResponse(mecanico);
-
-        return response;
+        return mecanico.get();
     }
 
-    public MecanicoResponse att(Integer id, MecanicoRequest request) {
-        if (!mecanicoRepository.existsById(id)) {
+
+    public Mecanico cadastrar(Mecanico mecanico) {
+        if (mecanicoRepository.existsByEmailOrCpf(mecanico.getEmail(), mecanico.getCpf())) {
+            throw new MecanicoJaCadastrado("Esse mecânico já existe no sistema!");
+        }
+
+        String codigoFuncionario;
+        do {
+            codigoFuncionario = gerarCodigoFuncionario(mecanico.getNome());
+        } while (mecanicoRepository.existsByCodigo(codigoFuncionario));
+
+        mecanico.setCodigo(codigoFuncionario);
+
+
+        return  mecanicoRepository.save(mecanico);
+    }
+
+    public Mecanico atualizar(Integer id, Mecanico mecanicoAtualizar) {
+        Optional<Mecanico> mecanicoOptional = mecanicoRepository.findById(id);
+
+        if (mecanicoOptional.isEmpty()) {
             throw new MecanicoNaoExiste("Não há nenhum mecanico cadastrado com essas informações!");
         }
-        Mecanico mecanico = MecanicoMapper.toEntity(request);
-        mecanico.setId(id);
-        mecanicoRepository.save(mecanico);
-        MecanicoResponse response = MecanicoMapper.toResponse(mecanico);
-        return response;
+
+        if(mecanicoRepository.existsByEmailAndIdNot(mecanicoAtualizar.getEmail(), id)){
+            throw new EmailJaUtilizado("Email já cadastrado no sistema!");
+        }
+
+        Mecanico mecanicoExistente = new Mecanico(
+                id,
+                mecanicoOptional.get().getCodigo(),
+                mecanicoAtualizar.getNome(),
+                mecanicoAtualizar.getAtivo(),
+                mecanicoAtualizar.getCpf(),
+                mecanicoAtualizar.getDataNascimento(),
+                mecanicoAtualizar.getEmail(),
+                mecanicoAtualizar.getNumeroTelefone()
+        );
+        return  mecanicoRepository.save(mecanicoExistente);
     }
 
     public void deletar(Integer id) {

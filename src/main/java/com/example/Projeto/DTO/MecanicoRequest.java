@@ -3,23 +3,27 @@ package com.example.Projeto.DTO;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
 public class MecanicoRequest {
-
+    @NotNull
     @NotBlank
-    String nome;
+    @Size(min=1, max=100)
+    private String nome;
+
+    @NotNull
+    @Size(min=1, max=1)
+    private Integer ativo;
 
     @NotBlank
     @CPF
     String cpf;
 
     @NotNull
+    @Past
     LocalDate dataNascimento;
 
     @Email
@@ -29,21 +33,18 @@ public class MecanicoRequest {
     @NotNull
     Long numeroTelefone;
 
-    @NotBlank
-    String codigo;
-
     public MecanicoRequest() {
     }
 
-    public MecanicoRequest(String nome, String cpf, LocalDate dataNascimento, String email, Long numeroTelefone, String codigo) {
+
+    public MecanicoRequest(String nome, Integer ativo, String cpf, LocalDate dataNascimento, String email, Long numeroTelefone) {
         this.nome = nome;
+        this.ativo = ativo;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.numeroTelefone = numeroTelefone;
-        this.codigo = codigo;
     }
-
 
     public String getNome() {
         return nome;
@@ -51,6 +52,14 @@ public class MecanicoRequest {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Integer ativo) {
+        this.ativo = ativo;
     }
 
     public String getCpf() {
@@ -83,13 +92,5 @@ public class MecanicoRequest {
 
     public void setNumeroTelefone(Long numeroTelefone) {
         this.numeroTelefone = numeroTelefone;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 }

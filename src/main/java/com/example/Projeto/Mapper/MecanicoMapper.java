@@ -6,31 +6,58 @@ import com.example.Projeto.DTO.MecanicoResponse;
 import com.example.Projeto.Entity.Cliente;
 import com.example.Projeto.Entity.Mecanico;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MecanicoMapper {
 
     public static MecanicoResponse toResponse(Mecanico mecanico){
-        MecanicoResponse response = new MecanicoResponse();
-        response.setCodigo(mecanico.getCodigo());
-        response.setCpf(mecanico.getCpf());
-        response.setDataNascimento(mecanico.getDataNascimento());
-        response.setEmail(mecanico.getEmail());
-        response.setNome(mecanico.getNome());
-        response.setNumeroTelefone(mecanico.getNumeroTelefone());
-        return response;
+
+        return new MecanicoResponse(
+                mecanico.getId(),
+                mecanico.getCodigo(),
+                mecanico.getNome(),
+                mecanico.getAtivo(),
+                mecanico.getCpf(),
+                mecanico.getDataNascimento(),
+                mecanico.getEmail(),
+                mecanico.getNumeroTelefone()
+        );
     }
 
-    public  static Mecanico toEntity(MecanicoRequest request){
-        Mecanico mecanico = new Mecanico(
+    public static Mecanico toEntity(MecanicoRequest request){
+
+        return new Mecanico(
+                null,
                 null,
                 request.getNome(),
+                request.getAtivo(),
                 request.getCpf(),
                 request.getDataNascimento(),
                 request.getEmail(),
-                request.getNumeroTelefone(),
-                request.getCodigo()
+                request.getNumeroTelefone()
         );
+    }
 
-        return mecanico;
+    public static List<MecanicoResponse> listEntityToResponse(List<Mecanico> mecanicos){
+        List<MecanicoResponse> responses = new ArrayList<>();
+
+        for (Mecanico mecanico : mecanicos) {
+            MecanicoResponse res = new MecanicoResponse(
+                    mecanico.getId(),
+                    mecanico.getCodigo(),
+                    mecanico.getNome(),
+                    mecanico.getAtivo(),
+                    mecanico.getCpf(),
+                    mecanico.getDataNascimento(),
+                    mecanico.getEmail(),
+                    mecanico.getNumeroTelefone()
+            );
+
+            responses.add(res);
+        }
+
+        return responses;
     }
 
 }
