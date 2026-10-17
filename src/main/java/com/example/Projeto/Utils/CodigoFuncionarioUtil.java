@@ -25,7 +25,7 @@ public class CodigoFuncionarioUtil {
         StringBuilder caracteresAleatorios = new StringBuilder(quantidadeCaracteres);
         Random random = new Random();
 
-        while((prefixo+caracteresAleatorios.toString()).length()<=5){
+        while((prefixo+caracteresAleatorios.toString()).length()<5){
             char letra = (char) ('A' + random.nextInt(26));
             caracteresAleatorios.append(letra);
         }
