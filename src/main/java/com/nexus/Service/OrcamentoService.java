@@ -1,8 +1,8 @@
 package com.nexus.Service;
 
-import com.example.Projeto.Entity.*;
-import com.example.Projeto.Exceptions.*;
-import com.example.Projeto.Repository.*;
+import com.nexus.Entity.*;
+import com.nexus.Exceptions.*;
+import com.nexus.Repository.*;
 import com.nexus.Entity.*;
 import com.nexus.Exceptions.*;
 import com.nexus.Repository.*;

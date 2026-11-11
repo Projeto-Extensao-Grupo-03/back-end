@@ -12,7 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.Projeto.LoginJWT.dto.*;
+import com.nexus.LoginJWT.dto.*;
 import com.nexus.LoginJWT.entity.Usuario;
 import com.nexus.LoginJWT.service.UsuarioService;
 
